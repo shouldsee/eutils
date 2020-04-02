@@ -39,8 +39,11 @@ class Base(object):
         elif self._root_tag != self._xml_root.tag:
             raise EutilsError("XML for {} object must be a {} element (got {})".format(
                 type(self).__name__, self._root_tag, self._xml_root.tag))
-
-
+     def tostring(self, encoding='utf8',pretty_print=True,**kw):
+        return lxml.etree.tostring(self._xml_root,pretty_print=pretty_print,encoding=encoding,**kw).decode(encoding))
+     def pprint(self):
+        print(self.tostring(pretty_print=True))
+      
 # <LICENSE>
 # Copyright 2015 eutils Committers
 # 
